@@ -1,13 +1,14 @@
 class Person
 
   attr_reader :name, :fave_song
-  attr_accessor :location
+  attr_accessor :location, :cash
 
-  def initialize(name, fave_song)
+  def initialize(name, fave_song, cash)
 
     @name = name
     @fave_song = fave_song
     @location = "None"
+    @cash = cash
 
   end
 

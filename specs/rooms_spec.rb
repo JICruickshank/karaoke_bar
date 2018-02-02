@@ -16,15 +16,15 @@ class TestRoom < MiniTest::Test
     @song6 = Song.new("Fairground")
     @song7 = Song.new("The Only One")
     @song8 = Song.new("This Is How It Feels")
-    @playlist = [@song1, @song2]
-    @person1 = Person.new("Liam", @song2)
-    @person2 = Person.new("Damon", @song4)
-    @person3 = Person.new("Shaun", @song5)
-    @person4 = Person.new("Mick", @song6)
-    @person5 = Person.new("Tim", @song7)
-    @person6 = Person.new("Tom", @song8)
+    @person1 = Person.new("Liam", @song2, 20)
+    @person2 = Person.new("Damon", @song4, 50)
+    @person3 = Person.new("Shaun", @song5, 30)
+    @person4 = Person.new("Mick", @song6, 40)
+    @person5 = Person.new("Tim", @song7, 10)
+    @person6 = Person.new("Tom", @song8, 5)
     @present = [@person1, @person2]
-    @room = Room.new("Room 1", @playlist, 5, @present)
+    @room = Room.new("Room 1", 5, @present)
+    @room.playlist = [@song1, @song2]
 
   end
 
@@ -54,8 +54,8 @@ class TestRoom < MiniTest::Test
 
   def test_allow_in
 
-    @room = Room.new("Room 1", [], 3, [@person1, @person2])
-    @room2 = Room.new("Room 1", [], 2, [@person1, @person2])
+    @room = Room.new("Room 1", 3, [@person1, @person2])
+    @room2 = Room.new("Room 1", 2, [@person1, @person2])
     assert_equal(true, @room.allow_in)
     assert_equal(false, @room2.allow_in)
 
@@ -89,10 +89,10 @@ class TestRoom < MiniTest::Test
     @song2 = Song.new("Supersonic")
     @song4 = Song.new("Coffee and TV")
     @song5 = Song.new("Step On")
-    @person1 = Person.new("Liam", @song2)
-    @person2 = Person.new("Damon", @song4)
-    @person3 = Person.new("Shaun", @song5)
-    @room = Room.new("Room 1", [], 3, [@person1, @person2])
+    @person1 = Person.new("Liam", @song2, 20)
+    @person2 = Person.new("Damon", @song4, 30)
+    @person3 = Person.new("Shaun", @song5, 40)
+    @room = Room.new("Room 1", 3, [@person1, @person2])
     @room.add_person_to_room(@person3)
     assert_equal([@person1, @person2, @person3], @room.present)
     assert_equal("Room 1", @person3.location)
@@ -103,10 +103,10 @@ class TestRoom < MiniTest::Test
     @song2 = Song.new("Supersonic")
     @song4 = Song.new("Coffee and TV")
     @song5 = Song.new("Step On")
-    @person1 = Person.new("Liam", @song2)
-    @person2 = Person.new("Damon", @song4)
-    @person3 = Person.new("Shaun", @song5)
-    @room = Room.new("Room 1", [], 1, [@person2])
+    @person1 = Person.new("Liam", @song2, 50)
+    @person2 = Person.new("Damon", @song4, 30)
+    @person3 = Person.new("Shaun", @song5, 30)
+    @room = Room.new("Room 1", 1, [@person2])
     @room.add_person_to_room(@person3)
     assert_equal([@person3], @room.queue)
     assert_equal("Room 1 queue", @person3.location)
@@ -114,7 +114,7 @@ class TestRoom < MiniTest::Test
   #
   def test_remove_person_from_room
 
-    @room = Room.new("Room 1", [], 3, [@person1, @person2])
+    @room = Room.new("Room 1", 3, [@person1, @person2])
     @room.remove_person_from_room(@person2)
     assert_equal([@person1], @room.present)
     assert_equal("None", @person2.location)

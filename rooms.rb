@@ -3,10 +3,10 @@ class Room
   attr_reader :name, :capacity
   attr_accessor :playlist, :present, :queue
 
-  def initialize(name, playlist, capacity, present)
+  def initialize(name, capacity, present)
 
     @name = name
-    @playlist = playlist
+    @playlist = []
     @capacity = capacity
     @present = present
     @queue = []

@@ -10,8 +10,8 @@ class TestPerson < MiniTest::Test
 
     @song = Song.new("I Wanna Be Adored")
     @song2 = Song.new("Not Nineteen Forever")
-    @person = Person.new("Ian", @song)
-    @person2 = Person.new("Liam", @song2)
+    @person = Person.new("Ian", @song, 20)
+    @person2 = Person.new("Liam", @song2, 30)
     @room = Room.new("Room 1", [], 5, [])
 
 
@@ -38,14 +38,19 @@ class TestPerson < MiniTest::Test
   def test_fave_song_on_playlist
     @song = Song.new("I Wanna Be Adored")
     @song2 = Song.new("Not Nineteen Forever")
-    @person = Person.new("Ian", @song)
-    @person2 = Person.new("Liam", @song2)
+    @person = Person.new("Ian", @song, 20)
+    @person2 = Person.new("Liam", @song2, 30)
     @room = Room.new("Room 1", [@song], 5, [])
 
     # @room.add_song_to_playlist(@song)
     assert_equal(true, @person.fave_song_on_playlist(@room))
     assert_equal(false, @person2.fave_song_on_playlist(@room))
 
+  end
+
+  def test_person_has_cash
+
+    assert_equal(20, @person.cash)
   end
 
 
