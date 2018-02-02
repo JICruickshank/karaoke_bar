@@ -1,7 +1,7 @@
 class Room
 
   attr_reader :name, :capacity
-  attr_accessor :playlist, :present
+  attr_accessor :playlist, :present, :queue
 
   def initialize(name, playlist, capacity, present)
 
@@ -9,8 +9,10 @@ class Room
     @playlist = playlist
     @capacity = capacity
     @present = present
+    @queue = []
 
   end
+
 
   def add_song_to_playlist(song)
 
@@ -36,11 +38,12 @@ class Room
 
   def add_person_to_room(person)
 
-    if allow_in
+    if allow_in == true
       @present << person
       person.location = @name
     else
-      return false
+      @queue << person
+      person.location = "#{@name} queue"
     end
 
   end
@@ -52,16 +55,7 @@ class Room
 
   end
 
-  # def fave_song_on_playlist(person)
-  #
-  #   @playlist.each do |song|
-  #     if song.title = person.fave_song
-  #       return true
-  #     else
-  #       return false
-  #     end
-  #   end
-  # end
+
 
 
 
