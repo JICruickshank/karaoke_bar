@@ -88,6 +88,22 @@ class TestRoom < MiniTest::Test
 
   end
 
+  def test_add_person_to_room__at_capacity
+    @room = Room.new("Room 1", [], 2, [@person1, @person2])
+    assert_equal(false, @room.add_person_to_room(@person3))
+  end
+
+  def test_remove_person_from_room
+
+    @room = Room.new("Room 1", [], 3, [@person1, @person2])
+    assert_equal([@person1], @room.present)
+
+
+
+  end
+
+
+
 
 
 

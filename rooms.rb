@@ -47,12 +47,18 @@ class Room
 
   def add_person_to_room(person)
 
-    @present << person
-    person.location = @name
+    if allow_in
+      @present << person
+      person.location = @name
+    else
+      return false
+    end
 
   end
 
-  def remove_person_from_room(person)
+  # def remove_person_from_room(person)
+
+
 
 
 

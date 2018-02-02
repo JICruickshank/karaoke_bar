@@ -8,7 +8,7 @@ class TestPerson < MiniTest::Test
   def setup
 
     @person = Person.new("Ian", "I Wanna Be Adored")
-    @person2 = Person.new("Courteneers", "Not Nineteen Forever")
+    @person2 = Person.new("Liam", "Not Nineteen Forever")
     @room = Room.new("Room 1", [], 5, [])
 
   end
