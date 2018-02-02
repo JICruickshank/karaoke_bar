@@ -2,6 +2,7 @@ require("minitest/autorun")
 require("minitest/rg")
 require_relative("../venue.rb")
 require_relative("../rooms.rb")
+require_relative("../person.rb")
 
 class TestVenue < MiniTest::Test
 
@@ -11,8 +12,9 @@ class TestVenue < MiniTest::Test
     @room2 = Room.new("Bar", 5, [])
     @room.takings = 10
     @room2.takings = 20
-    @venue = Venue.new("The Infinite Loop", [@room, @room2], 20)
+    @venue = Venue.new("The Infinite Loop", [@room, @room2], 20, 10, 5)
     @present = []
+    @takings = 0
 
   end
 
@@ -40,6 +42,17 @@ class TestVenue < MiniTest::Test
     assert_equal(30, @venue.takings)
 
   end
+
+  def test_allow_entry
+
+    @person = Person.new("Ian", @song, 20)
+    @venue.allow_entry(@person)
+    assert_equal([@person], @venue.present)
+    assert_equal(10, @venue.takings)
+    assert_equal(10, @person.cash)
+
+  end
+
 
 
 
