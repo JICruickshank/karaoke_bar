@@ -1,7 +1,7 @@
 class Venue
 
   attr_reader :name, :rooms, :capacity
-  attr_accessor :takings, :entry_fee, :drink_price, :present
+  attr_accessor :takings, :entry_fee, :drink_price, :present, :queue
 
   def initialize(name, rooms, capacity, entry_fee, drink_price)
 
@@ -12,6 +12,7 @@ class Venue
     @entry_fee = 10
     @drink_price = 5
     @present = []
+    @queue = []
 
 
   end
@@ -24,10 +25,14 @@ class Venue
 
   def allow_entry(person)
 
-    if person.cash >= person.cash
+    if person.cash < @entry_fee
+      return false
+    elsif @present.length < @capacity
       @present << person
       @takings += @entry_fee
       person.cash -= @entry_fee
+    else
+      @queue << person
     end
 
 

@@ -15,6 +15,7 @@ class TestVenue < MiniTest::Test
     @venue = Venue.new("The Infinite Loop", [@room, @room2], 20, 10, 5)
     @present = []
     @takings = 0
+    @queue = []
 
   end
 
@@ -51,6 +52,23 @@ class TestVenue < MiniTest::Test
     assert_equal(10, @venue.takings)
     assert_equal(10, @person.cash)
 
+  end
+
+  def test_allow_entry__at_capacity__add_to_queue
+
+    @venue = Venue.new("The Infinite Loop", [@room, @room2], 1, 10, 5)
+    @person = Person.new("Ian", @song, 20)
+    @person2 = Person.new("Liam", @song2, 30)
+    @queue = []
+    @venue.allow_entry(@person)
+    @venue.allow_entry(@person2)
+    assert_equal([@person2], @venue.queue)
+  end
+
+  def test_allow_entry_no_money
+
+    @person6 = Person.new("Tom", @song8, 5)
+    assert_equal(false, @venue.allow_entry(@person6))
   end
 
 
