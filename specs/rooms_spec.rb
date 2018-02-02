@@ -47,21 +47,12 @@ class TestRoom < MiniTest::Test
 
   end
 
-  def test_add_person_to_room
+  def test_allow_in
 
-    @room.add_person_to_room(@person3)
-    assert_equal(3, @room.present.length)
-    assert_equal("Room 1", @person3.location)
-
-  end
-
-  def test_reject_at_capacity
-
-    @room.add_person_to_room(@person3)
-    @room.add_person_to_room(@person4)
-    @room.add_person_to_room(@person5)
-    result = @room.add_person_to_room(@person6)
-    assert_equal(false, result)
+    @room = Room.new("Room 1", [], 3, [@person1, @person2])
+    @room2 = Room.new("Room 1", [], 2, [@person1, @person2])
+    assert_equal(true, @room.allow_in)
+    assert_equal(false, @room2.allow_in)
 
   end
 
@@ -87,6 +78,16 @@ class TestRoom < MiniTest::Test
     assert_equal(2, @room.playlist.length)
 
   end
+
+  def test_add_person_to_room
+
+    @room = Room.new("Room 1", [], 3, [@person1, @person2])
+    @room.add_person_to_room(@person3)
+    assert_equal([@person1, @person2, @person3], @room.present)
+    assert_equal("Room 1", @person3.location)
+
+  end
+
 
 
 

@@ -12,16 +12,16 @@ class Room
 
   end
 
-  def add_person_to_room(person)
+  # def add_person_to_room(person)
+  #
+  #   if @present.length < capacity
+  #     @present << person
+  #     person.location = @name
+  #   else
+  #     return false
+  #   end
 
-    if @present.length < capacity
-      @present << person
-      person.location = @name
-    else
-      return false
-    end
-
-  end
+  # end
 
   def add_song_to_playlist(song)
 
@@ -34,6 +34,28 @@ class Room
     @playlist.delete(song)
 
   end
+
+  def allow_in
+
+    if @present.length < @capacity
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def add_person_to_room(person)
+
+    @present << person
+    person.location = @name
+
+  end
+
+  def remove_person_from_room(person)
+
+
+
 
 
 end
