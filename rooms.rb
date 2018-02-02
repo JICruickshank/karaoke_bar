@@ -12,17 +12,6 @@ class Room
 
   end
 
-  # def add_person_to_room(person)
-  #
-  #   if @present.length < capacity
-  #     @present << person
-  #     person.location = @name
-  #   else
-  #     return false
-  #   end
-
-  # end
-
   def add_song_to_playlist(song)
 
     @playlist << song
@@ -56,8 +45,23 @@ class Room
 
   end
 
-  # def remove_person_from_room(person)
+  def remove_person_from_room(person)
 
+    person.location = "None"
+    @present.delete(person)
+
+  end
+
+  # def fave_song_on_playlist(person)
+  #
+  #   @playlist.each do |song|
+  #     if song.title = person.fave_song
+  #       return true
+  #     else
+  #       return false
+  #     end
+  #   end
+  # end
 
 
 

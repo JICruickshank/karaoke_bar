@@ -11,4 +11,15 @@ class Person
 
   end
 
+  def fave_song_on_playlist(room)
+
+    room.playlist.each do |song|
+
+      if song == @fave_song
+        return true
+      end
+    end
+    return false
+  end
+
 end

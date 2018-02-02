@@ -9,16 +9,21 @@ class TestRoom < MiniTest::Test
   def setup
 
     @song1 = Song.new("Red Red Wine")
-    @song2 = Song.new("Rapper's Delight")
-    @song3 = Song.new("Supersonic")
+    @song2 = Song.new("Supersonic")
+    @song3 = Song.new("Rapper's Delight")
+    @song4 = Song.new("Coffee and TV")
+    @song5 = Song.new("Step On")
+    @song6 = Song.new("Fairground")
+    @song7 = Song.new("The Only One")
+    @song8 = Song.new("This Is How It Feels")
     @playlist = [@song1, @song2]
-    person1 = Person.new("Liam", "Supersonic")
-    person2 = Person.new("Damon", "Coffee and TV")
-    @person3 = Person.new("Shaun", "Step On")
-    @person4 = Person.new("Mick", "Fairground")
-    @person5 = Person.new("Tim", "The Only One")
-    @person6 = Person.new("Tom", "This Is How It Feels")
-    @present = [person1, person2]
+    @person1 = Person.new("Liam", @song2)
+    @person2 = Person.new("Damon", @song4)
+    @person3 = Person.new("Shaun", @song5)
+    @person4 = Person.new("Mick", @song6)
+    @person5 = Person.new("Tim", @song7)
+    @person6 = Person.new("Tom", @song8)
+    @present = [@person1, @person2]
     @room = Room.new("Room 1", @playlist, 5, @present)
 
   end
@@ -96,11 +101,18 @@ class TestRoom < MiniTest::Test
   def test_remove_person_from_room
 
     @room = Room.new("Room 1", [], 3, [@person1, @person2])
+    @room.remove_person_from_room(@person2)
     assert_equal([@person1], @room.present)
-
-
+    assert_equal("None", @person2.location)
 
   end
+
+  # def test_fave_song_on_playlist
+  #
+  #   result = @room.fave_song_on_playlist(@person1)
+  #   assert_equal(true, result)
+  #
+  # end
 
 
 

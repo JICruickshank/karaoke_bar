@@ -2,14 +2,18 @@ require("minitest/autorun")
 require("minitest/rg")
 require_relative("../person.rb")
 require_relative("../rooms.rb")
+require_relative("../songs.rb")
 
 class TestPerson < MiniTest::Test
 
   def setup
 
-    @person = Person.new("Ian", "I Wanna Be Adored")
-    @person2 = Person.new("Liam", "Not Nineteen Forever")
+    @song = Song.new("I Wanna Be Adored")
+    @song2 = Song.new("Not Nineteen Forever")
+    @person = Person.new("Ian", @song)
+    @person2 = Person.new("Liam", @song2)
     @room = Room.new("Room 1", [], 5, [])
+
 
   end
 
@@ -21,13 +25,26 @@ class TestPerson < MiniTest::Test
 
   def test_person_has_fave_song
 
-    assert_equal("I Wanna Be Adored", @person.fave_song)
+    assert_equal("I Wanna Be Adored", @person.fave_song.title)
 
   end
 
   def test_find_person_location
 
     assert_equal("None", @person.location)
+
+  end
+
+  def test_fave_song_on_playlist
+    @song = Song.new("I Wanna Be Adored")
+    @song2 = Song.new("Not Nineteen Forever")
+    @person = Person.new("Ian", @song)
+    @person2 = Person.new("Liam", @song2)
+    @room = Room.new("Room 1", [@song], 5, [])
+
+    # @room.add_song_to_playlist(@song)
+    assert_equal(true, @person.fave_song_on_playlist(@room))
+    assert_equal(false, @person2.fave_song_on_playlist(@room))
 
   end
 
