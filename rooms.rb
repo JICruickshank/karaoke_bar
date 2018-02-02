@@ -1,7 +1,7 @@
 class Room
 
   attr_reader :name, :capacity
-  attr_accessor :playlist, :present, :queue
+  attr_accessor :playlist, :present, :queue, :takings
 
   def initialize(name, capacity, present)
 
