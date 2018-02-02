@@ -10,6 +10,7 @@ class Room
     @capacity = capacity
     @present = present
     @queue = []
+    @takings = 0
 
   end
 
@@ -52,6 +53,13 @@ class Room
 
     person.location = "None"
     @present.delete(person)
+
+  end
+
+  def sell_drink(person, price)
+
+    person.cash -= price
+    @takings += price
 
   end
 

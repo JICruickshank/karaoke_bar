@@ -121,4 +121,11 @@ class TestRoom < MiniTest::Test
 
   end
 
+  def test_sell_drink
+
+    @room.sell_drink(@person1, 5)
+    assert_equal(15, @person1.cash)
+
+  end
+
 end
