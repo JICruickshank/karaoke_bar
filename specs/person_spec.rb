@@ -30,15 +30,6 @@ class TestPerson < MiniTest::Test
 
   end
 
-  def test_enter_room
-
-    @room.add_person_to_room(@person)
-    @person.enter_room(@room)
-    assert_equal("Room 1", @person.location)
-    assert_equal(1, @room.present.length)
-
-  end
-
 
 
 end

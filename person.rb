@@ -11,10 +11,5 @@ class Person
 
   end
 
-  def enter_room(room)
-
-      @location = room.name
-
-  end
 
 end

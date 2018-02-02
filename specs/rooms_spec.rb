@@ -51,6 +51,7 @@ class TestRoom < MiniTest::Test
 
     @room.add_person_to_room(@person3)
     assert_equal(3, @room.present.length)
+    assert_equal("Room 1", @person3.location)
 
   end
 
@@ -84,7 +85,7 @@ class TestRoom < MiniTest::Test
 
     @room.remove_song_from_playlist(@song3)
     assert_equal(2, @room.playlist.length)
-    
+
   end
 
 
