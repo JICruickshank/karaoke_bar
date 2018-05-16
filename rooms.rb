@@ -12,6 +12,7 @@ class Room
     @queue = []
     @takings = 0
 
+
   end
 
 
@@ -60,6 +61,16 @@ class Room
 
     person.cash -= price
     @takings += price
+
+  end
+
+  def play_a_song()
+
+    current_song = @playlist[0]
+    @playlist.delete_at[0]
+
+
+
 
   end
 
